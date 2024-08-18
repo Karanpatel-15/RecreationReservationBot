@@ -16,9 +16,9 @@ actName = "Badminton doubles - adult"
 numberOfPeople = '2'
 
 # Personal Details
-number = "6139815014"
-email = "inbox.kpatel@gmail.com"
-name = "Karan Patel"
+number = "xxxxxx0000"
+email = " xxxxxxxx @gmail.com"
+name = "xxxxx xxxxx"
 
 # Initialize the Chrome driver
 driver = webdriver.Chrome()
