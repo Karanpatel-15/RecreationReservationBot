@@ -1,6 +1,7 @@
 # Reservation Automation Script
 
-A Python script that automates booking an activity through a web-based reservation system using Selenium.
+A Python script that automates booking activity through a web-based reservation system using Selenium.
+Make sure to start the script 1 minute before 6 pm EST. 
 
 ## Features
 
