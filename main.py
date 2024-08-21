@@ -10,15 +10,15 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Activity Details
 link = "https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/Index?Culture=en&PageId=b3b9b36f-8401-466d-b4c4-19eb5547b43a&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
-date = "Monday August 19, 2024"
-actTime = "8:00 PM"
-actName = "Badminton doubles - adult"
+date = "Thursday August 22, 2024"
+actTime = "9:45 AM"
+actName = "Yoga"
 numberOfPeople = '2'
 
 # Personal Details
-number = "xxxxxx0000"
-email = " xxxxxxxx @gmail.com"
-name = "xxxxx xxxxx"
+number = "6139815014"
+email = "inbox.kpatel@gmail.com"
+name = "Karan Patel"
 
 # Initialize the Chrome driver
 driver = webdriver.Chrome()
@@ -92,9 +92,10 @@ try:
     email_input.send_keys(email)
 
     # Fill in the name
-    name_input = WebDriverWait(driver, 1).until(
-        EC.presence_of_element_located((By.ID, "field2021"))
+    name_input = WebDriverWait(driver, 2).until(
+        EC.presence_of_element_located((By.CSS_SELECTOR, "input[id^='field']"))
     )
+
     name_input.clear()
     name_input.send_keys(name)
 
@@ -102,9 +103,9 @@ try:
 
     # Click the submit button to confirm the reservation
     submit_button = WebDriverWait(driver, 1).until(
-        EC.element_to_be_clickable((By.ID, "submit-btn"))
+        EC.element_to_be_clickable((By.ID, "submit-btn"))        
     )
-    # submit_button.click()
+    submit_button.click()
 
     # Wait for a few seconds to observe the result
     time.sleep(600)
