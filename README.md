@@ -2,7 +2,7 @@
 
 - A Python script that automates booking activity through a web-based reservation system using Selenium.
 - **Make sure to start the script 1 minute before 6 pm EST.**
-  
+
 ## Features
 
 - Automatically refreshes the reservation page at a specified time.
@@ -27,3 +27,4 @@
    ```bash
    python reservation_script.py
    ```
+   - **_MAKE SURE TO PRESS THE SUBMIT BUTTON MANUALLY WHEN THE SCRIPT FILLS IN THE DETAILS._**
