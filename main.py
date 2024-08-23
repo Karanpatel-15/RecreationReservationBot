@@ -3,16 +3,25 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import datetime, timedelta
+
 
 
 # Replace the following variables with the correct values for your reservation
 # Make sure the data, activity name, and activity time are exactly as they appear on the website
 
 # Activity Details
-link = "https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/Index?Culture=en&PageId=b3b9b36f-8401-466d-b4c4-19eb5547b43a&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
-date = "Thursday August 22, 2024"
-actTime = "9:45 AM"
-actName = "Yoga"
+link = "https://reservation.frontdesksuite.ca/rcfs/cardelrec/Home/Index?Culture=en&PageId=a10d1358-60a7-46b6-b5e9-5b990594b108&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
+
+# Get today's date and add 2 days
+future_date = datetime.now() + timedelta(days=2)
+
+# Format the future date in the desired format
+formatted_date = future_date.strftime("%A %B %d, %Y")
+print(formatted_date)
+
+actName = "Badminton - Family"
+actTime = "9:00 AM"
 numberOfPeople = '2'
 
 # Personal Details
