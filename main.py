@@ -4,30 +4,25 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
-
-
-
-# Replace the following variables with the correct values for your reservation
-# Make sure the data, activity name, and activity time are exactly as they appear on the website
-
-# Activity Details
-link = "https://reservation.frontdesksuite.ca/rcfs/cardelrec/Home/Index?Culture=en&PageId=a10d1358-60a7-46b6-b5e9-5b990594b108&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
+from activityInfo import link, actName, actTime, numberOfPeople, number, email, name
 
 # Get today's date and add 2 days
 future_date = datetime.now() + timedelta(days=2)
 
 # Format the future date in the desired format
 formatted_date = future_date.strftime("%A %B %d, %Y")
-print(formatted_date)
 
-actName = "Badminton - Family"
-actTime = "9:00 AM"
-numberOfPeople = '2'
+# Print what we are tesing:
+print("Testing for the following details:")
+print("Activity Name: " + actName)
+print("Activity Date: " + formatted_date)
+print("Activity Time: " + actTime)
+print("Number of People: " + numberOfPeople)
+print("Phone Number: " + number)
+print("Email: " + email)
+print("Name: " + name)
 
-# Personal Details
-number = "6139815014"
-email = "inbox.kpatel@gmail.com"
-name = "Karan Patel"
+
 
 # Initialize the Chrome driver
 driver = webdriver.Chrome()
@@ -68,20 +63,23 @@ try:
     while True:
         try:
             # Find the correct date
-            date_element = WebDriverWait(driver, 1).until(
-                EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), '" + date + "')]/ancestor::a"))
+            date_element = WebDriverWait(driver, 2).until(
+                # EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), '" + date + "')]/ancestor::a"))
+                EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), '" + formatted_date + "')]/ancestor::a"))
+
             )
             date_element.click()
 
             # Find the correct time and click it
             time_element = WebDriverWait(driver, 1).until(
-                EC.element_to_be_clickable((By.XPATH, "//a[@aria-label='" + actTime + " " + date + "']"))
+                EC.element_to_be_clickable((By.XPATH, "//a[@aria-label='" + actTime + " " + formatted_date + "']"))
             )
             time_element.click()
             print("Successfully selected the date and time")
             break
         except:
-            print("Still waiting for the date and time to be present")
+            # print time with seconds to see the progress
+            print("Still waiting for the date and time to be present. Current time: " + datetime.now().strftime("%H:%M:%S"))
             time.sleep(1)
             driver.refresh()
             continue
