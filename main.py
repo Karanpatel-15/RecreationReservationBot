@@ -4,10 +4,10 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
-from activityInfo import link, actName, actTime, numberOfPeople, number, email, name
+from activityInfo import link, actName, actTime, numberOfPeople, number, email, name, daysOffset
 
 # Get today's date and add 2 days
-future_date = datetime.now() + timedelta(days=2)
+future_date = datetime.now() + timedelta(days=daysOffset)
 
 # Format the future date in the desired format
 formatted_date = future_date.strftime("%A %B %d, %Y")
@@ -35,7 +35,7 @@ try:
             driver.get(link)    
 
             # Wait for the specific activity button to be clickable and click it
-            button = WebDriverWait(driver, 10).until(
+            button = WebDriverWait(driver, 1).until(
                 EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), '" + actName + "')]/parent::a"))
             )
             button.click()
@@ -55,7 +55,7 @@ try:
             print("Successfully submitted the number of people")
             break
         except:
-            print("Still waiting for the number of people input field to be present")
+            print("Still waiting for the number of people input field to be present. Current time: " + datetime.now().strftime("%H:%M:%S"))
             time.sleep(1)
             driver.refresh()
             continue
@@ -79,7 +79,7 @@ try:
             break
         except:
             # print time with seconds to see the progress
-            print("Still waiting for the date and time to be present. Current time: " + datetime.now().strftime("%H:%M:%S"))
+            print("Still waiting for the date and time to be present")
             time.sleep(1)
             driver.refresh()
             continue
