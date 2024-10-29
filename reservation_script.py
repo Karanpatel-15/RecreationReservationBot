@@ -4,13 +4,18 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from datetime import datetime, timedelta
-from activityInfo import link, actName, actTime, numberOfPeople, number, email, name, daysOffset
+from activityInfo import activityDetails, number, email, name, daysOffset
 
 # Get today's date and add 2 days
 future_date = datetime.now() + timedelta(days=daysOffset)
 
 # Format the future date in the desired format
 formatted_date = future_date.strftime("%A %B %d, %Y")
+
+link = activityDetails["link"]
+actName = activityDetails["actName"]
+actTime = activityDetails["actTime"]
+numberOfPeople = activityDetails["numberOfPeople"]
 
 # Print what we are tesing:
 print("Testing for the following details:")
