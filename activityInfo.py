@@ -26,12 +26,12 @@ cardelBadmintonSunday10am = {
     "numberOfPeople": '2'    
 }
 
-richcraftBadmintonFriday12pm = {
+richcraftTTFriday8pm = {
     "link": richcraftrec,
-    "actName": "Badminton doubles - adult",
-    "actTime": "12:00 PM",
+    "actName": "Table tennis - adult",
+    "actTime": "8:00 PM",
     "numberOfPeople": '2'    
 }
 
 # Used for assigning the correct activity details presets
-activityDetails = richcraftBadmintonFriday12pm 
+activityDetails = richcraftTTFriday8pm 

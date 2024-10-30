@@ -8,7 +8,7 @@ from activityInfo import activityDetails, number, email, name, daysOffset
 
 # Proceed once it's refreshtime
 future_date = datetime.now() + timedelta(days=daysOffset)
-formatted_date = future_date.strftime("%A %B %d, %Y")
+formatted_date = future_date.strftime("%A %B %-d, %Y")
 
 link = activityDetails["link"]
 actName = activityDetails["actName"]
