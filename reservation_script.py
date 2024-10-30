@@ -29,7 +29,7 @@ driver = webdriver.Chrome()
 driver.get(link)
 
 # Target refresh time (6 PM)
-refreshtime = datetime.now().replace(hour=18, minute=25, second=0, microsecond=0)
+refreshtime = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
 
 # Wait until exactly refreshtime
 while datetime.now() <= refreshtime:
