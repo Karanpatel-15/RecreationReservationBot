@@ -28,6 +28,19 @@ print("Name: " + name)
 driver = webdriver.Chrome()
 driver.get(link)
 
+try:
+    button = WebDriverWait(driver, 1).until(
+        EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), '" + actName + "')]/parent::a"))
+    )
+    button.click()
+    print("Activity Name found. Proceeding with the reservation at 6 PM")
+    driver.get(link)
+except:
+    print("Activity Name not found. Please check the activity name and try again.")
+    driver.quit()
+    exit()
+
+
 # Target refresh time (6 PM)
 refreshtime = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
 
