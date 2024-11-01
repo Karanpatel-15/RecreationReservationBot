@@ -26,12 +26,19 @@ cardelBadmintonSunday10am = {
     "numberOfPeople": '2'    
 }
 
-richcraftTTFriday8pm = {
+customTest = {
+    "link": cardelrec,
+    "actName": "Preschool swim",
+    "actTime": "12:30 PM",
+    "numberOfPeople": '2'    
+}
+
+richcraftVballSat6pm = {
     "link": richcraftrec,
-    "actName": "Table tennis - adult",
-    "actTime": "8:00 PM",
+    "actName": "Volleyball - adult",
+    "actTime": "6:00 PM",
     "numberOfPeople": '2'    
 }
 
 # Used for assigning the correct activity details presets
-activityDetails = richcraftTTFriday8pm 
+activityDetails = cardelBadmintonSunday10am 
