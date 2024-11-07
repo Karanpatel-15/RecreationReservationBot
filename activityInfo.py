@@ -8,9 +8,9 @@ richcraftrec = "https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/
 daysOffset = 2 # Number of days from today to the desired reservation date. Default is 2 days
 
 # Personal Detail
-number = "6139815014"
-email = "inbox.kpatel@gmail.com"
-name = "Karan Patel"
+number = "6669991111"
+email = "test@gmail.com"
+name = "John Doe"
 
 # Activity Details Presets
 richcraftBadmintonThursday7pm = {
@@ -33,6 +33,20 @@ customTest = {
     "numberOfPeople": '2'    
 }
 
+richcraftVballMon9pm = {
+    "link": richcraftrec,
+    "actName": "Volleyball - adult",
+    "actTime": "9:00 PM",
+    "numberOfPeople": '2'    
+}
+
+cardelVballMon9pm = {
+    "link": cardelrec,
+    "actName": "Volleyball - adult",
+    "actTime": "7:45 PM",
+    "numberOfPeople": '2'    
+}
+
 richcraftVballSat6pm = {
     "link": richcraftrec,
     "actName": "Volleyball - adult",
@@ -41,4 +55,4 @@ richcraftVballSat6pm = {
 }
 
 # Used for assigning the correct activity details presets
-activityDetails = cardelBadmintonSunday10am 
+activityDetails = richcraftVballSat6pm
