@@ -8,7 +8,8 @@ from activityInfo import activityDetails, number, email, name, daysOffset
 
 # Proceed once it's refreshtime
 future_date = datetime.now() + timedelta(days=daysOffset)
-formatted_date = future_date.strftime("%A %B %-d, %Y")
+formatted_date = future_date.strftime("%A %B %d, %Y")
+formatted_date = formatted_date.replace(" 0", " ")  # Remove leading zero from day
 
 # Target refresh time (6 PM)
 refreshtime = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
