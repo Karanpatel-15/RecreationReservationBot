@@ -23,8 +23,9 @@
    - Set your `number`, `email`, and `name` for the booking in `activityInfo.py`.
 
 2. **Run the script:**
+   
    - The script starts refreshing the page at 6:00 PM EST until it finds and books the desired slot.
    ```bash
-   python reservation_script.py
+   python3 reservation_script.py
    ```
    - **_MAKE SURE TO PRESS THE SUBMIT BUTTON MANUALLY WHEN THE SCRIPT FILLS IN THE DETAILS._**

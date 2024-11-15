@@ -4,15 +4,16 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from activityInfo import activityDetails, number, email, name, daysOffset
+from activityInfo import activityDetails, number, email, name, DAYS_OFFSET, REFRESH_TIME, VIRTUAL_CODES
+from mongo_utils import get_verification_code, delete_verification_code
 
 # Proceed once it's refreshtime
-future_date = datetime.now() + timedelta(days=daysOffset)
+future_date = datetime.now() + timedelta(days=DAYS_OFFSET)
 formatted_date = future_date.strftime("%A %B %d, %Y")
 formatted_date = formatted_date.replace(" 0", " ")  # Remove leading zero from day
 
 # Target refresh time (6 PM)
-refreshtime = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
+refreshtime = REFRESH_TIME
 
 link = activityDetails["link"]
 actName = activityDetails["actName"]
@@ -123,6 +124,35 @@ try:
         EC.element_to_be_clickable((By.ID, "submit-btn"))
     )
     submit_button.click()
+
+
+    if VIRTUAL_CODES:
+        print("Virtual codes enabled via MongoDB.")
+        while True:
+            try:
+                verification_code, document_id = get_verification_code()
+                if verification_code:
+                    verification_code_input = WebDriverWait(driver, 1).until(
+                        EC.presence_of_element_located((By.ID, "code"))
+                    )
+                    verification_code_input.clear()
+                    verification_code_input.send_keys(verification_code)
+                    print("Successfully entered the verification code")
+                    # Submit the verification code button and click
+                    confirm_button = WebDriverWait(driver, 10).until(
+                        EC.element_to_be_clickable((By.XPATH, "//button[@onclick='submitCommand(\"SubmitContactInfoValidationCode\")']"))
+                    )
+                    confirm_button.click()
+                    delete_verification_code(document_id)
+                    break
+                else:
+                    print("Still waiting for the verification code")
+                    time.sleep(10)
+                    continue
+            except:
+                print("Verification code input field not found. Please check the page and try again.")
+    else:
+        print("Manual verification code required.")
 
     time.sleep(600)
 
