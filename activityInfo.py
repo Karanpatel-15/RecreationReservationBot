@@ -9,7 +9,7 @@ richcraftrec = "https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/
 # Activity Development
 DAYS_OFFSET = 2 # Number of days from today to the desired reservation date. Default is 2 days
 REFRESH_TIME = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
-VIRTUAL_CODES = True  # Set to True if you want to use virtual codes for testing
+VIRTUAL_CODES = False  # Set to True if you want to use virtual codes for testing
 
 
 # Activity Details Presets
@@ -67,4 +67,4 @@ email = "inbox.kpatel@gmail.com"
 name = "Karan Patel"
 
 # Used for assigning the correct activity details presets
-activityDetails = cardelBadmintonSunday11am
+activityDetails = richcraftBadmintonThursday7pm
