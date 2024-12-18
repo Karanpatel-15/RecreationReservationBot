@@ -20,23 +20,23 @@ customTest = {
     "numberOfPeople": '2'
 }
 
-richcraftBadmintonThursday7pm = {
+richcraftBadmintonWeds = {
     "link": richcraftrec,
-    "actName": "Badminton doubles - all ages",
-    "actTime": "7:00 PM",
+    "actName": "Badminton - 16+",
+    "actTime": "8:30 PM",
     "numberOfPeople": '2'    
 }
-cardelBadmintonSunday11am = {
+cardelBadmintonSunday10am = {
     "link": cardelrec,
     "actName": "Badminton - 16+",
-    "actTime": "11:00 AM",
+    "actTime": "10:00 AM",
     "numberOfPeople": '2'    
 }
 
-richcraftVballMon9pm = {
+richcraftVballMon8pm = {
     "link": richcraftrec,
     "actName": "Volleyball - adult",
-    "actTime": "9:00 PM",
+    "actTime": "8:00 PM",
     "numberOfPeople": '2'    
 }
 
@@ -67,4 +67,4 @@ email = "inbox.kpatel@gmail.com"
 name = "Karan Patel"
 
 # Used for assigning the correct activity details presets
-activityDetails = richcraftBadmintonThursday7pm
+activityDetails = cardelVballThur745pm
