@@ -20,10 +20,10 @@ customTest = {
     "numberOfPeople": '2'
 }
 
-richcraftBadmintonWeds = {
+richcraftBadmintonTue = {
     "link": richcraftrec,
-    "actName": "Badminton - 16+",
-    "actTime": "8:30 PM",
+    "actName": "Badminton doubles - all ages",
+    "actTime": "7:30 PM",
     "numberOfPeople": '2'    
 }
 cardelBadmintonSunday10am = {
