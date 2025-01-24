@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+from datetime import datetime, timedelta
 # Replace the following variables with the correct values for your reservation
 # Make sure the data, activity name, and activity time are exactly as they appear on the website
 
@@ -7,18 +7,14 @@ cardelrec = "https://reservation.frontdesksuite.ca/rcfs/cardelrec/Home/Index?Cul
 richcraftrec = "https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/Index?Culture=en&PageId=b3b9b36f-8401-466d-b4c4-19eb5547b43a&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
 
 # Activity Development
-DAYS_OFFSET = 2 # Number of days from today to the desired reservation date. Default is 2 days
-REFRESH_TIME = datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
+DAYS_OFFSET = 0 # Number of days from today to the desired reservation date. Default is 2 days
+REFRESH_TIME = datetime.now() + timedelta(seconds=10)
+# datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
 VIRTUAL_CODES = False  # Set to True if you want to use virtual codes for testing
 
 
 # Activity Details Presets
-customTest = {
-    "link": cardelrec,
-    "actName": "Preschool swim",
-    "actTime": "12:15 PM",
-    "numberOfPeople": '2'
-}
+
 
 richcraftBadmintonTue = {
     "link": richcraftrec,
@@ -61,10 +57,17 @@ richcraftVballSat7pm = {
     "numberOfPeople": '2'    
 }
 
+customTest = {
+    "link": cardelrec,
+    "actName": "Lane swim",
+    "actTime": "8:30 PM",
+    "numberOfPeople": '1'
+}
+
 # Personal Detail
 number = "6139815014"
 email = "inbox.kpatel@gmail.com"
 name = "Karan Patel"
 
 # Used for assigning the correct activity details presets
-activityDetails = cardelVballThur745pm
+activityDetails = customTest

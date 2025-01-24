@@ -5,7 +5,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from activityInfo import activityDetails, number, email, name, DAYS_OFFSET, REFRESH_TIME, VIRTUAL_CODES
-from mongo_utils import get_verification_code, delete_verification_code
 
 # Proceed once it's refreshtime
 future_date = datetime.now() + timedelta(days=DAYS_OFFSET)
@@ -30,20 +29,20 @@ print("Email: " + email)
 print("Name: " + name)
 
 # Initialize the Chrome driver
-driver = webdriver.Chrome()
-driver.get(link)
+chromeDriver = webdriver.Chrome()
+chromeDriver.get(link)
 
 
 try:
-    button = WebDriverWait(driver, 1).until(
+    button = WebDriverWait(chromeDriver, 1).until(
         EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), '" + actName + "')]/parent::a"))
     )
     button.click()
     print("Activity Name found. Proceeding with the reservation at " + str(refreshtime))
-    driver.get(link)
+    chromeDriver.get(link)
 except:
     print("Activity Name not found. Please check the activity name and try again.")
-    driver.quit()
+    chromeDriver.quit()
     exit()
 
 
@@ -56,20 +55,20 @@ while datetime.now() <= refreshtime:
 try:
     while True:
         try:
-            driver.get(link)
+            chromeDriver.get(link)
 
-            button = WebDriverWait(driver, 1).until(
+            button = WebDriverWait(chromeDriver, 1).until(
                 EC.element_to_be_clickable((By.XPATH, "//div[contains(text(), '" + actName + "')]/parent::a"))
             )
             button.click()
 
-            reservation_count_input = WebDriverWait(driver, 1).until(
+            reservation_count_input = WebDriverWait(chromeDriver, 1).until(
                 EC.presence_of_element_located((By.ID, "reservationCount"))
             )
             reservation_count_input.clear()
             reservation_count_input.send_keys(numberOfPeople)
 
-            submit_button = WebDriverWait(driver, 1).until(
+            submit_button = WebDriverWait(chromeDriver, 1).until(
                 EC.element_to_be_clickable((By.ID, "submit-btn"))
             )
             submit_button.click()
@@ -78,17 +77,17 @@ try:
         except:
             print("Still waiting for the number of people input field. Current time: " + datetime.now().strftime("%H:%M:%S"))
             time.sleep(1)
-            driver.refresh()
+            chromeDriver.refresh()
             continue
 
     while True:
         try:
-            date_element = WebDriverWait(driver, 2).until(
+            date_element = WebDriverWait(chromeDriver, 2).until(
                 EC.element_to_be_clickable((By.XPATH, "//span[contains(text(), '" + formatted_date + "')]/ancestor::a"))
             )
             date_element.click()
 
-            time_element = WebDriverWait(driver, 1).until(
+            time_element = WebDriverWait(chromeDriver, 1).until(
                 EC.element_to_be_clickable((By.XPATH, "//a[@aria-label='" + actTime + " " + formatted_date + "']"))
             )
             time_element.click()
@@ -97,22 +96,22 @@ try:
         except:
             print("Still waiting for the date and time")
             time.sleep(1)
-            driver.refresh()
+            chromeDriver.refresh()
             continue
 
-    phone_input = WebDriverWait(driver, 1).until(
+    phone_input = WebDriverWait(chromeDriver, 1).until(
         EC.presence_of_element_located((By.ID, "telephone"))
     )
     phone_input.clear()
     phone_input.send_keys(number)
 
-    email_input = WebDriverWait(driver, 1).until(
+    email_input = WebDriverWait(chromeDriver, 1).until(
         EC.presence_of_element_located((By.ID, "email"))
     )
     email_input.clear()
     email_input.send_keys(email)
 
-    name_input = WebDriverWait(driver, 2).until(
+    name_input = WebDriverWait(chromeDriver, 2).until(
         EC.presence_of_element_located((By.CSS_SELECTOR, "input[id^='field']"))
     )
     name_input.clear()
@@ -120,7 +119,7 @@ try:
 
     time.sleep(1)
 
-    submit_button = WebDriverWait(driver, 1).until(
+    submit_button = WebDriverWait(chromeDriver, 1).until(
         EC.element_to_be_clickable((By.ID, "submit-btn"))
     )
     submit_button.click()
@@ -132,14 +131,14 @@ try:
             try:
                 verification_code, document_id = get_verification_code()
                 if verification_code:
-                    verification_code_input = WebDriverWait(driver, 1).until(
+                    verification_code_input = WebDriverWait(chromeDriver, 1).until(
                         EC.presence_of_element_located((By.ID, "code"))
                     )
                     verification_code_input.clear()
                     verification_code_input.send_keys(verification_code)
                     print("Successfully entered the verification code")
                     # Submit the verification code button and click
-                    confirm_button = WebDriverWait(driver, 10).until(
+                    confirm_button = WebDriverWait(chromeDriver, 10).until(
                         EC.element_to_be_clickable((By.XPATH, "//button[@onclick='submitCommand(\"SubmitContactInfoValidationCode\")']"))
                     )
                     confirm_button.click()
@@ -157,4 +156,4 @@ try:
     time.sleep(600)
 
 finally:
-    driver.quit()
+    chromeDriver.quit()
