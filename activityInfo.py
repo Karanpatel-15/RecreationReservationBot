@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 # Replace the following variables with the correct values for your reservation
 # Make sure the data, activity name, and activity time are exactly as they appear on the website
 
