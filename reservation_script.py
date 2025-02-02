@@ -104,15 +104,25 @@ def make_reservation(driver, activity_details, personal_details):
     finally:
         driver.quit()
 
-# Main execution
-chrome_driver = webdriver.Chrome()
-firefox_driver = webdriver.Firefox()
+# Main execution if both chromeActivityDetail and firefoxActivityDetail are provided, if only one is provided, the other will not be executed
+if chromeActivityDetail and firefoxActivityDetail:
+    chrome_driver = webdriver.Chrome()
+    firefox_driver = webdriver.Firefox()
 
-chrome_thread = threading.Thread(target=make_reservation, args=(chrome_driver, chromeActivityDetail, chrome_personal_details))
-firefox_thread = threading.Thread(target=make_reservation, args=(firefox_driver, firefoxActivityDetail, firefox_personal_details))
+    chrome_thread = threading.Thread(target=make_reservation, args=(chrome_driver, chromeActivityDetail, chrome_personal_details))
+    firefox_thread = threading.Thread(target=make_reservation, args=(firefox_driver, firefoxActivityDetail, firefox_personal_details))
 
-chrome_thread.start()
-firefox_thread.start()
+    chrome_thread.start()
+    firefox_thread.start()
 
-chrome_thread.join()
-firefox_thread.join()
+    chrome_thread.join()
+    firefox_thread.join()
+elif chromeActivityDetail:
+    chrome_driver = webdriver.Chrome()
+    make_reservation(chrome_driver, chromeActivityDetail, chrome_personal_details)
+
+elif firefoxActivityDetail:
+    firefox_driver = webdriver.Firefox()
+    make_reservation(firefox_driver, firefoxActivityDetail, firefox_personal_details)
+else:
+    print("Please provide at least one activity detail to make a reservation")

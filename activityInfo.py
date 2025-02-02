@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 cardelrec = "https://reservation.frontdesksuite.ca/rcfs/cardelrec/Home/Index?Culture=en&PageId=a10d1358-60a7-46b6-b5e9-5b990594b108&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
 richcraftrec = "https://reservation.frontdesksuite.ca/rcfs/richcraftkanata/Home/Index?Culture=en&PageId=b3b9b36f-8401-466d-b4c4-19eb5547b43a&ShouldStartReserveTimeFlow=False&ButtonId=00000000-0000-0000-0000-000000000000"
 
-DAYS_OFFSET = 0 # Number of days from today to the desired reservation date. Default is 2 days
+DAYS_OFFSET = 2 # Number of days from today to the desired reservation date. Default is 2 days
 REFRESH_TIME = datetime.now() + timedelta(seconds=10)
 # datetime.now().replace(hour=18, minute=0, second=0, microsecond=0)
 
